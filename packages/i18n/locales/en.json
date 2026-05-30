@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "MiniAgent",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "confirm": "Confirm",
+    "contact_us": "Contact Us",
+    "refer_friend": "Refer a Friend"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "requests": "My Requests",
+    "wallet": "Wallet",
+    "profile": "Profile",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "track": "Track Order"
+  },
+  "auth": {
+    "login_title": "Welcome Back",
+    "signup_title": "Create Account",
+    "phone": "Phone Number",
+    "email": "Email",
+    "password": "Password",
+    "otp": "Verification Code",
+    "send_otp": "Send Code",
+    "verify": "Verify",
+    "or": "or",
+    "already_have_account": "Already have an account?",
+    "no_account": "Don't have an account?"
+  },
+  "request_status": {
+    "DRAFT": "Draft",
+    "SUBMITTED": "Submitted",
+    "AWAITING_PAYMENT": "Awaiting Payment",
+    "PAID": "Paid",
+    "IN_PROGRESS": "In Progress",
+    "CERTIFICATE_UPLOADED": "Certificate Ready",
+    "READY_FOR_DELIVERY": "Ready for Delivery",
+    "PICKED_UP": "Picked Up",
+    "IN_TRANSIT": "In Transit",
+    "DELIVERED": "Delivered",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled",
+    "ON_HOLD": "On Hold",
+    "NEEDS_MORE_INFO": "Needs More Info",
+    "REFUNDED": "Refunded"
+  },
+  "services": {
+    "title": "Our Services",
+    "select": "Select Service",
+    "fast": "Fast",
+    "normal": "Normal",
+    "sla_days": "{days} business days",
+    "delivery_fee": "Delivery Fee",
+    "total": "Total",
+    "submit_request": "Submit Request",
+    "select_speed": "Select Speed",
+    "upload_documents": "Upload Documents",
+    "delivery_address": "Delivery Address"
+  },
+  "tracking": {
+    "title": "Track Your Request",
+    "request_number": "Request #{number}",
+    "scan_qr": "Scan QR to track",
+    "whatsapp_us": "WhatsApp Us",
+    "call_us": "Call Us",
+    "get_directions": "Get Directions",
+    "download_certificate": "Download Certificate"
+  },
+  "wallet": {
+    "balance": "Balance",
+    "topup": "Top Up",
+    "withdraw": "Withdraw",
+    "history": "Transaction History",
+    "points": "Points"
+  }
+}

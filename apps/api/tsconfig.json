@@ -1,0 +1,12 @@
+{
+  "extends": "@mini-agent/config/tsconfig/nestjs",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*", "prisma/seed.ts"],
+  "exclude": ["node_modules", "dist", "test"]
+}

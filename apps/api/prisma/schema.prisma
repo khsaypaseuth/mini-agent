@@ -1,0 +1,494 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  customer
+  back_office_staff
+  main_office_staff
+  delivery_man
+  manager
+  super_admin
+}
+
+enum UserStatus {
+  active
+  inactive
+  suspended
+}
+
+enum OtpChannel {
+  whatsapp
+  email
+}
+
+enum RequestChannel {
+  whatsapp
+  web
+  messenger
+}
+
+enum RequestStatus {
+  DRAFT
+  SUBMITTED
+  AWAITING_PAYMENT
+  PAID
+  IN_PROGRESS
+  CERTIFICATE_UPLOADED
+  READY_FOR_DELIVERY
+  PICKED_UP
+  IN_TRANSIT
+  DELIVERED
+  COMPLETED
+  CANCELLED
+  ON_HOLD
+  NEEDS_MORE_INFO
+  REFUNDED
+}
+
+enum DeliveryType {
+  digital_pdf
+  physical
+  both
+}
+
+enum OutputType {
+  physical_doc
+  digital_pdf
+  digital_with_qr_label
+  printed_photos
+}
+
+enum PricingMode {
+  flat
+  per_person
+  per_vehicle_type
+  conditional
+}
+
+enum InputType {
+  photo
+  scan
+  text
+  date
+  select
+  number
+}
+
+enum FileKind {
+  scan
+  photo
+  certificate
+  proof
+  label
+  qr_label
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  failed
+  refunded
+}
+
+enum WalletTransactionType {
+  topup
+  withdraw
+  spend
+  refund
+}
+
+enum AppointmentType {
+  B2
+  meet
+}
+
+enum AppointmentStatus {
+  pending
+  confirmed
+  completed
+  cancelled
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model User {
+  id            String     @id @default(cuid())
+  role          UserRole   @default(customer)
+  name          String
+  phone         String?    @unique
+  email         String?    @unique
+  passwordHash  String?    @map("password_hash")
+  locale        String     @default("lo")
+  status        UserStatus @default(active)
+  walletBalance Decimal    @default(0) @map("wallet_balance") @db.Decimal(15, 2)
+  points        Int        @default(0)
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  otpCodes                OtpCode[]
+  staffServiceAssignments StaffServiceAssignment[]
+  customerRequests        Request[]                @relation("CustomerRequests")
+  assignedRequests        Request[]                @relation("AssignedStaffRequests")
+  statusHistoryEntries    RequestStatusHistory[]
+  files                   File[]
+  walletTransactions      WalletTransaction[]
+  deliveries              Delivery[]
+  auditLogs               AuditLog[]
+
+  @@map("users")
+}
+
+model OtpCode {
+  id        String     @id @default(cuid())
+  userId    String?    @map("user_id")
+  contact   String
+  channel   OtpChannel
+  codeHash  String     @map("code_hash")
+  expiresAt DateTime   @map("expires_at")
+  consumed  Boolean    @default(false)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map("otp_codes")
+}
+
+model Service {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        Json       // { lo: "...", en: "...", th: "..." }
+  description Json       // i18n JSON per locale
+  icon        String?
+  outputType  OutputType @map("output_type")
+  isActive    Boolean    @default(true) @map("is_active")
+  sortOrder   Int        @default(0) @map("sort_order")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  inputRequirements       ServiceInputRequirement[]
+  pricingOptions          PricingOption[]
+  deliveryOptions         ServiceDeliveryOption[]
+  staffServiceAssignments StaffServiceAssignment[]
+  requests                Request[]
+
+  @@map("services")
+}
+
+model ServiceInputRequirement {
+  id        String    @id @default(cuid())
+  serviceId String    @map("service_id")
+  key       String
+  label     Json      // i18n
+  inputType InputType @map("input_type")
+  required  Boolean   @default(true)
+  options   Json?     // for select input_type: array of { value, label(i18n) }
+  sortOrder Int       @default(0) @map("sort_order")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, key])
+  @@map("service_input_requirements")
+}
+
+model PricingOption {
+  id          String      @id @default(cuid())
+  serviceId   String      @map("service_id")
+  label       Json        // i18n: { lo: "ດ່ວນ", en: "Fast" }
+  amount      Decimal     @db.Decimal(15, 2)
+  currency    String      @default("LAK")
+  slaDays     Int         @map("sla_days")
+  pricingMode PricingMode @default(flat) @map("pricing_mode")
+  conditions  Json?       // for conditional/per-vehicle pricing rules
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  service  Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  requests Request[]
+
+  @@map("pricing_options")
+}
+
+model ServiceDeliveryOption {
+  id        String       @id @default(cuid())
+  serviceId String       @map("service_id")
+  type      DeliveryType
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, type])
+  @@map("service_delivery_options")
+}
+
+model StaffServiceAssignment {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  serviceId String   @map("service_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, serviceId])
+  @@map("staff_service_assignments")
+}
+
+model Request {
+  id              String         @id @default(cuid())
+  requestNumber   String         @unique @map("request_number")
+  publicToken     String         @unique @map("public_token")
+  customerId      String         @map("customer_id")
+  serviceId       String         @map("service_id")
+  pricingOptionId String?        @map("pricing_option_id")
+  channel         RequestChannel @default(web)
+  status          RequestStatus  @default(DRAFT)
+  deliveryType    DeliveryType   @default(physical) @map("delivery_type")
+  gpsLat          Decimal?       @map("gps_lat") @db.Decimal(10, 8)
+  gpsLng          Decimal?       @map("gps_lng") @db.Decimal(11, 8)
+  distanceKm      Decimal?       @map("distance_km") @db.Decimal(8, 3)
+  deliveryFee     Decimal?       @map("delivery_fee") @db.Decimal(15, 2)
+  totalAmount     Decimal?       @map("total_amount") @db.Decimal(15, 2)
+  currency        String         @default("LAK")
+  assignedStaffId String?        @map("assigned_staff_id")
+  notes           String?
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  customer      User           @relation("CustomerRequests", fields: [customerId], references: [id])
+  service       Service        @relation(fields: [serviceId], references: [id])
+  pricingOption PricingOption? @relation(fields: [pricingOptionId], references: [id])
+  assignedStaff User?          @relation("AssignedStaffRequests", fields: [assignedStaffId], references: [id])
+
+  inputs        RequestInput[]
+  passengers    RequestPassenger[]
+  statusHistory RequestStatusHistory[]
+  certificate   Certificate?
+  label         Label?
+  delivery      Delivery?
+  payment       Payment?
+  appointments  Appointment[]
+
+  @@map("requests")
+}
+
+model RequestInput {
+  id             String   @id @default(cuid())
+  requestId      String   @map("request_id")
+  requirementKey String   @map("requirement_key")
+  textValue      String?  @map("text_value")
+  fileId         String?  @map("file_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  request Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  file    File?   @relation(fields: [fileId], references: [id])
+
+  @@map("request_inputs")
+}
+
+// For services that handle multiple passengers (e.g. register-thai-immigration)
+model RequestPassenger {
+  id             String    @id @default(cuid())
+  requestId      String    @map("request_id")
+  name           String?
+  passportFileId String?   @map("passport_file_id")
+  dateIn         DateTime? @map("date_in")
+  dateOut        DateTime? @map("date_out")
+  checkpoint     String?
+  vehiclePlate   String?   @map("vehicle_plate")
+  flightNo       String?   @map("flight_no")
+  arrivalPoint   String?   @map("arrival_point")
+  stayLocation   String?   @map("stay_location")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  request      Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  passportFile File?   @relation("PassengerPassport", fields: [passportFileId], references: [id])
+
+  @@map("request_passengers")
+}
+
+model RequestStatusHistory {
+  id         String         @id @default(cuid())
+  requestId  String         @map("request_id")
+  fromStatus RequestStatus? @map("from_status")
+  toStatus   RequestStatus  @map("to_status")
+  actorId    String?        @map("actor_id")
+  note       String?
+  createdAt  DateTime       @default(now()) @map("created_at")
+
+  request Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actor   User?   @relation(fields: [actorId], references: [id])
+
+  @@map("request_status_history")
+}
+
+model File {
+  id         String   @id @default(cuid())
+  ownerId    String   @map("owner_id")
+  kind       FileKind
+  storageKey String   @map("storage_key")
+  mime       String
+  size       Int
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  owner              User               @relation(fields: [ownerId], references: [id])
+  requestInputs      RequestInput[]
+  passengerPassports RequestPassenger[] @relation("PassengerPassport")
+  certFiles          Certificate[]      @relation("CertFile")
+  certQrLabels       Certificate[]      @relation("CertQrLabel")
+  labelFiles         Label[]
+  deliveryProofs     Delivery[]
+
+  @@map("files")
+}
+
+model Certificate {
+  id            String   @id @default(cuid())
+  requestId     String   @unique @map("request_id")
+  fileId        String   @map("file_id")
+  downloadToken String   @unique @map("download_token")
+  qrLabelFileId String?  @map("qr_label_file_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  request     Request @relation(fields: [requestId], references: [id])
+  file        File    @relation("CertFile", fields: [fileId], references: [id])
+  qrLabelFile File?   @relation("CertQrLabel", fields: [qrLabelFileId], references: [id])
+
+  @@map("certificates")
+}
+
+model Label {
+  id        String   @id @default(cuid())
+  requestId String   @unique @map("request_id")
+  fileId    String   @map("file_id")
+  qrPayload String   @map("qr_payload")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  request Request @relation(fields: [requestId], references: [id])
+  file    File    @relation(fields: [fileId], references: [id])
+
+  @@map("labels")
+}
+
+model Delivery {
+  id            String    @id @default(cuid())
+  requestId     String    @unique @map("request_id")
+  deliveryManId String    @map("delivery_man_id")
+  pickedUpAt    DateTime? @map("picked_up_at")
+  inTransitAt   DateTime? @map("in_transit_at")
+  deliveredAt   DateTime? @map("delivered_at")
+  proofFileId   String?   @map("proof_file_id")
+  proofLat      Decimal?  @map("proof_lat") @db.Decimal(10, 8)
+  proofLng      Decimal?  @map("proof_lng") @db.Decimal(11, 8)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  request     Request @relation(fields: [requestId], references: [id])
+  deliveryMan User    @relation(fields: [deliveryManId], references: [id])
+  proofFile   File?   @relation(fields: [proofFileId], references: [id])
+
+  @@map("deliveries")
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  requestId   String        @unique @map("request_id")
+  provider    String        @default("phapay")
+  providerRef String?       @map("provider_ref")
+  amount      Decimal       @db.Decimal(15, 2)
+  currency    String        @default("LAK")
+  status      PaymentStatus @default(pending)
+  rawWebhook  Json?         @map("raw_webhook")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  request Request @relation(fields: [requestId], references: [id])
+
+  @@map("payments")
+}
+
+model WalletTransaction {
+  id           String                @id @default(cuid())
+  userId       String                @map("user_id")
+  type         WalletTransactionType
+  amount       Decimal               @db.Decimal(15, 2)
+  balanceAfter Decimal               @map("balance_after") @db.Decimal(15, 2)
+  ref          String?
+  createdAt    DateTime              @default(now()) @map("created_at")
+  updatedAt    DateTime              @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("wallet_transactions")
+}
+
+// For working-visa B2 appointment sub-flow
+model Appointment {
+  id          String            @id @default(cuid())
+  requestId   String            @map("request_id")
+  type        AppointmentType
+  scheduledAt DateTime?         @map("scheduled_at")
+  status      AppointmentStatus @default(pending)
+  createdAt   DateTime          @default(now()) @map("created_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+
+  request Request @relation(fields: [requestId], references: [id])
+
+  @@map("appointments")
+}
+
+// Key-value store for editable system settings (delivery tiers, origin coords, currencies)
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}
+
+// Tips & eat/go attraction content, translated per locale
+model ContentPage {
+  id          String   @id @default(cuid())
+  type        String   // "tips" | "attraction"
+  locale      String
+  title       String
+  body        String
+  locationTag String?  @map("location_tag") // "nongkhai" | "udon" | "sakon" | "khonkaen"
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("content_pages")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?  @map("actor_id")
+  action    String
+  entity    String
+  entityId  String   @map("entity_id")
+  meta      Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorId], references: [id])
+
+  @@map("audit_logs")
+}

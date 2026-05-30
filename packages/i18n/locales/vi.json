@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "MiniAgent",
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "view": "Xem",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
+    "contact_us": "Liên hệ chúng tôi",
+    "refer_friend": "Giới thiệu bạn bè"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "services": "Dịch vụ",
+    "requests": "Yêu cầu của tôi",
+    "wallet": "Ví tiền",
+    "profile": "Hồ sơ",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất",
+    "track": "Theo dõi đơn hàng"
+  },
+  "auth": {
+    "login_title": "Chào mừng trở lại",
+    "signup_title": "Tạo tài khoản",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "otp": "Mã xác nhận",
+    "send_otp": "Gửi mã",
+    "verify": "Xác nhận",
+    "or": "hoặc",
+    "already_have_account": "Đã có tài khoản?",
+    "no_account": "Chưa có tài khoản?"
+  },
+  "request_status": {
+    "DRAFT": "Nháp",
+    "SUBMITTED": "Đã gửi",
+    "AWAITING_PAYMENT": "Chờ thanh toán",
+    "PAID": "Đã thanh toán",
+    "IN_PROGRESS": "Đang xử lý",
+    "CERTIFICATE_UPLOADED": "Giấy tờ đã sẵn sàng",
+    "READY_FOR_DELIVERY": "Sẵn sàng giao",
+    "PICKED_UP": "Đã lấy hàng",
+    "IN_TRANSIT": "Đang giao",
+    "DELIVERED": "Đã giao",
+    "COMPLETED": "Hoàn thành",
+    "CANCELLED": "Đã hủy",
+    "ON_HOLD": "Tạm dừng",
+    "NEEDS_MORE_INFO": "Cần thêm thông tin",
+    "REFUNDED": "Đã hoàn tiền"
+  },
+  "services": {
+    "title": "Dịch vụ của chúng tôi",
+    "select": "Chọn dịch vụ",
+    "fast": "Nhanh",
+    "normal": "Thông thường",
+    "sla_days": "{days} ngày làm việc",
+    "delivery_fee": "Phí giao hàng",
+    "total": "Tổng cộng",
+    "submit_request": "Gửi yêu cầu",
+    "select_speed": "Chọn tốc độ",
+    "upload_documents": "Tải lên tài liệu",
+    "delivery_address": "Địa chỉ giao hàng"
+  },
+  "tracking": {
+    "title": "Theo dõi yêu cầu",
+    "request_number": "Yêu cầu #{number}",
+    "scan_qr": "Quét QR để theo dõi",
+    "whatsapp_us": "WhatsApp chúng tôi",
+    "call_us": "Gọi cho chúng tôi",
+    "get_directions": "Chỉ đường",
+    "download_certificate": "Tải giấy tờ"
+  },
+  "wallet": {
+    "balance": "Số dư",
+    "topup": "Nạp tiền",
+    "withdraw": "Rút tiền",
+    "history": "Lịch sử giao dịch",
+    "points": "Điểm"
+  }
+}

@@ -1,0 +1,42 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+
+# next.js
+.next/
+out/
+
+# nestjs / typescript
+dist/
+build/
+
+# env files — copy .env.example → .env locally, never commit .env
+.env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# turbo cache
+.turbo/
+
+# vercel
+.vercel/
+
+# typescript build info
+*.tsbuildinfo
+next-env.d.ts
+
+# expo
+.expo/
+web-build/
+
+# pnpm
+.pnpm-store/

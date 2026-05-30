@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "มินิเอเจนต์",
+    "loading": "กำลังโหลด...",
+    "error": "เกิดข้อผิดพลาด",
+    "submit": "ส่ง",
+    "cancel": "ยกเลิก",
+    "back": "กลับ",
+    "next": "ถัดไป",
+    "save": "บันทึก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "view": "ดู",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "close": "ปิด",
+    "confirm": "ยืนยัน",
+    "contact_us": "ติดต่อเรา",
+    "refer_friend": "แนะนำเพื่อน"
+  },
+  "nav": {
+    "home": "หน้าหลัก",
+    "services": "บริการ",
+    "requests": "คำขอของฉัน",
+    "wallet": "กระเป๋าเงิน",
+    "profile": "โปรไฟล์",
+    "login": "เข้าสู่ระบบ",
+    "signup": "สมัครสมาชิก",
+    "logout": "ออกจากระบบ",
+    "track": "ติดตามคำสั่ง"
+  },
+  "auth": {
+    "login_title": "ยินดีต้อนรับกลับ",
+    "signup_title": "สร้างบัญชี",
+    "phone": "เบอร์โทรศัพท์",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "otp": "รหัสยืนยัน",
+    "send_otp": "ส่งรหัส",
+    "verify": "ยืนยัน",
+    "or": "หรือ",
+    "already_have_account": "มีบัญชีอยู่แล้ว?",
+    "no_account": "ยังไม่มีบัญชี?"
+  },
+  "request_status": {
+    "DRAFT": "ฉบับร่าง",
+    "SUBMITTED": "ส่งแล้ว",
+    "AWAITING_PAYMENT": "รอชำระเงิน",
+    "PAID": "ชำระแล้ว",
+    "IN_PROGRESS": "กำลังดำเนินการ",
+    "CERTIFICATE_UPLOADED": "เอกสารพร้อมแล้ว",
+    "READY_FOR_DELIVERY": "พร้อมจัดส่ง",
+    "PICKED_UP": "รับแล้ว",
+    "IN_TRANSIT": "กำลังจัดส่ง",
+    "DELIVERED": "จัดส่งแล้ว",
+    "COMPLETED": "เสร็จสิ้น",
+    "CANCELLED": "ยกเลิก",
+    "ON_HOLD": "รอดำเนินการ",
+    "NEEDS_MORE_INFO": "ต้องการข้อมูลเพิ่มเติม",
+    "REFUNDED": "คืนเงินแล้ว"
+  },
+  "services": {
+    "title": "บริการของเรา",
+    "select": "เลือกบริการ",
+    "fast": "ด่วน",
+    "normal": "ปกติ",
+    "sla_days": "{days} วันทำการ",
+    "delivery_fee": "ค่าจัดส่ง",
+    "total": "รวม",
+    "submit_request": "ส่งคำขอ",
+    "select_speed": "เลือกความเร็ว",
+    "upload_documents": "อัปโหลดเอกสาร",
+    "delivery_address": "ที่อยู่จัดส่ง"
+  },
+  "tracking": {
+    "title": "ติดตามคำขอของคุณ",
+    "request_number": "คำขอ #{number}",
+    "scan_qr": "สแกน QR เพื่อติดตาม",
+    "whatsapp_us": "WhatsApp เรา",
+    "call_us": "โทรหาเรา",
+    "get_directions": "ดูเส้นทาง",
+    "download_certificate": "ดาวน์โหลดเอกสาร"
+  },
+  "wallet": {
+    "balance": "ยอดเงิน",
+    "topup": "เติมเงิน",
+    "withdraw": "ถอนเงิน",
+    "history": "ประวัติการทำรายการ",
+    "points": "คะแนน"
+  }
+}

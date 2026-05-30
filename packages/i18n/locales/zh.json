@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "迷你代理",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "submit": "提交",
+    "cancel": "取消",
+    "back": "返回",
+    "next": "下一步",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看",
+    "search": "搜索",
+    "filter": "筛选",
+    "close": "关闭",
+    "confirm": "确认",
+    "contact_us": "联系我们",
+    "refer_friend": "推荐朋友"
+  },
+  "nav": {
+    "home": "首页",
+    "services": "服务",
+    "requests": "我的申请",
+    "wallet": "钱包",
+    "profile": "个人资料",
+    "login": "登录",
+    "signup": "注册",
+    "logout": "退出登录",
+    "track": "追踪订单"
+  },
+  "auth": {
+    "login_title": "欢迎回来",
+    "signup_title": "创建账户",
+    "phone": "手机号",
+    "email": "邮箱",
+    "password": "密码",
+    "otp": "验证码",
+    "send_otp": "发送验证码",
+    "verify": "验证",
+    "or": "或",
+    "already_have_account": "已有账户？",
+    "no_account": "还没有账户？"
+  },
+  "request_status": {
+    "DRAFT": "草稿",
+    "SUBMITTED": "已提交",
+    "AWAITING_PAYMENT": "等待付款",
+    "PAID": "已付款",
+    "IN_PROGRESS": "处理中",
+    "CERTIFICATE_UPLOADED": "证件已就绪",
+    "READY_FOR_DELIVERY": "待配送",
+    "PICKED_UP": "已取件",
+    "IN_TRANSIT": "配送中",
+    "DELIVERED": "已送达",
+    "COMPLETED": "已完成",
+    "CANCELLED": "已取消",
+    "ON_HOLD": "暂停",
+    "NEEDS_MORE_INFO": "需要更多信息",
+    "REFUNDED": "已退款"
+  },
+  "services": {
+    "title": "我们的服务",
+    "select": "选择服务",
+    "fast": "快速",
+    "normal": "普通",
+    "sla_days": "{days} 个工作日",
+    "delivery_fee": "配送费",
+    "total": "合计",
+    "submit_request": "提交申请",
+    "select_speed": "选择速度",
+    "upload_documents": "上传文件",
+    "delivery_address": "配送地址"
+  },
+  "tracking": {
+    "title": "追踪您的申请",
+    "request_number": "申请 #{number}",
+    "scan_qr": "扫描二维码追踪",
+    "whatsapp_us": "WhatsApp联系我们",
+    "call_us": "致电我们",
+    "get_directions": "获取路线",
+    "download_certificate": "下载证件"
+  },
+  "wallet": {
+    "balance": "余额",
+    "topup": "充值",
+    "withdraw": "提现",
+    "history": "交易记录",
+    "points": "积分"
+  }
+}

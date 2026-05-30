@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "MiniAgent",
+    "loading": "Tab zaum...",
+    "error": "Muaj qhov yuam kev",
+    "submit": "Xa",
+    "cancel": "Tso tseg",
+    "back": "Rov qab",
+    "next": "Tom ntej",
+    "save": "Khaws",
+    "delete": "Rho tawm",
+    "edit": "Kho",
+    "view": "Saib",
+    "search": "Nrhiav",
+    "filter": "Lim",
+    "close": "Kaw",
+    "confirm": "Paub meej",
+    "contact_us": "Hu rau peb",
+    "refer_friend": "Qhia phooj ywg"
+  },
+  "nav": {
+    "home": "Lub tsev",
+    "services": "Kev pab cuam",
+    "requests": "Kuv cov kev thov",
+    "wallet": "Hnab nyiaj",
+    "profile": "Ntaub ntawv",
+    "login": "Nkag mus",
+    "signup": "Tso npe",
+    "logout": "Tawm",
+    "track": "Raws kev txiav txim"
+  },
+  "auth": {
+    "login_title": "Txais tos rov qab",
+    "signup_title": "Tsim tus account",
+    "phone": "Xov tooj",
+    "email": "Email",
+    "password": "Tus lej nkag",
+    "otp": "Cov lej paub meej",
+    "send_otp": "Xa cov lej",
+    "verify": "Paub meej",
+    "or": "los yog",
+    "already_have_account": "Muaj account lawm?",
+    "no_account": "Tsis tau muaj account?"
+  },
+  "request_status": {
+    "DRAFT": "Thawj ntawv",
+    "SUBMITTED": "Xa lawm",
+    "AWAITING_PAYMENT": "Tab tom tos them",
+    "PAID": "Them lawm",
+    "IN_PROGRESS": "Tab tom ua",
+    "CERTIFICATE_UPLOADED": "Ntaub ntawv npaj lawm",
+    "READY_FOR_DELIVERY": "Npaj xa lawm",
+    "PICKED_UP": "Muab lawm",
+    "IN_TRANSIT": "Tab tom xa",
+    "DELIVERED": "Xa lawm",
+    "COMPLETED": "Ua tiav",
+    "CANCELLED": "Tseg lawm",
+    "ON_HOLD": "Nres ib pliag",
+    "NEEDS_MORE_INFO": "Xav tau ntaub ntawv ntxiv",
+    "REFUNDED": "Xa nyiaj rov qab lawm"
+  },
+  "services": {
+    "title": "Peb cov kev pab cuam",
+    "select": "Xaiv kev pab cuam",
+    "fast": "Sai",
+    "normal": "Ib txwm",
+    "sla_days": "{days} hnub ua hauj lwm",
+    "delivery_fee": "Nqi xa khoom",
+    "total": "Tag nrho",
+    "submit_request": "Xa kev thov",
+    "select_speed": "Xaiv kev ceev",
+    "upload_documents": "Upload cov ntaub ntawv",
+    "delivery_address": "Chaw xa khoom"
+  },
+  "tracking": {
+    "title": "Raws koj li kev thov",
+    "request_number": "Kev thov #{number}",
+    "scan_qr": "Scan QR los raws",
+    "whatsapp_us": "WhatsApp peb",
+    "call_us": "Hu rau peb",
+    "get_directions": "Nrhiav txoj kev",
+    "download_certificate": "Download ntaub ntawv"
+  },
+  "wallet": {
+    "balance": "Nyiaj seem",
+    "topup": "Ntxiv nyiaj",
+    "withdraw": "Rho nyiaj",
+    "history": "Keeb kwm kev lag luam",
+    "points": "Cov ntsiab lus"
+  }
+}

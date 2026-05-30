@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "ມິນິເອເຈນ",
+    "loading": "ກຳລັງໂຫຼດ...",
+    "error": "ມີຂໍ້ຜິດພາດ",
+    "submit": "ສົ່ງ",
+    "cancel": "ຍົກເລີກ",
+    "back": "ກັບຄືນ",
+    "next": "ຕໍ່ໄປ",
+    "save": "ບັນທຶກ",
+    "delete": "ລຶບ",
+    "edit": "ແກ້ໄຂ",
+    "view": "ເບິ່ງ",
+    "search": "ຄົ້ນຫາ",
+    "filter": "ກັ່ນຕອງ",
+    "close": "ປິດ",
+    "confirm": "ຢືນຢັນ",
+    "contact_us": "ຕິດຕໍ່ພວກເຮົາ",
+    "refer_friend": "ແນະນຳໝູ່"
+  },
+  "nav": {
+    "home": "ໜ້າຫຼັກ",
+    "services": "ບໍລິການ",
+    "requests": "ຄຳຂໍຂອງຂ້ອຍ",
+    "wallet": "ກະເປົ໋າເງິນ",
+    "profile": "ໂປຣໄຟລ໌",
+    "login": "ເຂົ້າສູ່ລະບົບ",
+    "signup": "ລົງທະບຽນ",
+    "logout": "ອອກຈາກລະບົບ",
+    "track": "ຕິດຕາມຄຳສັ່ງ"
+  },
+  "auth": {
+    "login_title": "ຍິນດີຕ້ອນຮັບກັບຄືນ",
+    "signup_title": "ສ້າງບັນຊີ",
+    "phone": "ເບີໂທລະສັບ",
+    "email": "ອີເມລ",
+    "password": "ລະຫັດຜ່ານ",
+    "otp": "ລະຫັດຢືນຢັນ",
+    "send_otp": "ສົ່ງລະຫັດ",
+    "verify": "ຢືນຢັນ",
+    "or": "ຫຼື",
+    "already_have_account": "ມີບັນຊີຢູ່ແລ້ວ?",
+    "no_account": "ຍັງບໍ່ມີບັນຊີ?"
+  },
+  "request_status": {
+    "DRAFT": "ແບບຮ່າງ",
+    "SUBMITTED": "ສົ່ງແລ້ວ",
+    "AWAITING_PAYMENT": "ລໍຖ້າການຊຳລະ",
+    "PAID": "ຊຳລະແລ້ວ",
+    "IN_PROGRESS": "ກຳລັງດຳເນີນການ",
+    "CERTIFICATE_UPLOADED": "ເອກະສານພ້ອມແລ້ວ",
+    "READY_FOR_DELIVERY": "ພ້ອມສົ່ງ",
+    "PICKED_UP": "ຮັບແລ້ວ",
+    "IN_TRANSIT": "ກຳລັງຈັດສົ່ງ",
+    "DELIVERED": "ສົ່ງແລ້ວ",
+    "COMPLETED": "ສຳເລັດ",
+    "CANCELLED": "ຍົກເລີກ",
+    "ON_HOLD": "ລໍຖ້າ",
+    "NEEDS_MORE_INFO": "ຕ້ອງການຂໍ້ມູນເພີ່ມ",
+    "REFUNDED": "ຄືນເງິນແລ້ວ"
+  },
+  "services": {
+    "title": "ບໍລິການຂອງພວກເຮົາ",
+    "select": "ເລືອກບໍລິການ",
+    "fast": "ດ່ວນ",
+    "normal": "ທຳມະດາ",
+    "sla_days": "{days} ວັນເຮັດວຽກ",
+    "delivery_fee": "ຄ່າຈັດສົ່ງ",
+    "total": "ລວມ",
+    "submit_request": "ສົ່ງຄຳຂໍ",
+    "select_speed": "ເລືອກຄວາມໄວ",
+    "upload_documents": "ອັບໂຫຼດເອກະສານ",
+    "delivery_address": "ທີ່ຢູ່ຈັດສົ່ງ"
+  },
+  "tracking": {
+    "title": "ຕິດຕາມຄຳຂໍຂອງທ່ານ",
+    "request_number": "ຄຳຂໍ #{number}",
+    "scan_qr": "ສະແກນ QR ເພື່ອຕິດຕາມ",
+    "whatsapp_us": "WhatsApp ພວກເຮົາ",
+    "call_us": "ໂທຫາພວກເຮົາ",
+    "get_directions": "ເບິ່ງທິດທາງ",
+    "download_certificate": "ດາວໂຫຼດເອກະສານ"
+  },
+  "wallet": {
+    "balance": "ຍອດເງິນ",
+    "topup": "ເຕີມເງິນ",
+    "withdraw": "ຖອນເງິນ",
+    "history": "ປະຫວັດທຸລະກຳ",
+    "points": "ຄະແນນ"
+  }
+}

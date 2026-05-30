@@ -1,0 +1,91 @@
+{
+  "common": {
+    "app_name": "미니에이전트",
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "submit": "제출",
+    "cancel": "취소",
+    "back": "뒤로",
+    "next": "다음",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "view": "보기",
+    "search": "검색",
+    "filter": "필터",
+    "close": "닫기",
+    "confirm": "확인",
+    "contact_us": "문의하기",
+    "refer_friend": "친구 추천"
+  },
+  "nav": {
+    "home": "홈",
+    "services": "서비스",
+    "requests": "내 신청",
+    "wallet": "지갑",
+    "profile": "프로필",
+    "login": "로그인",
+    "signup": "회원가입",
+    "logout": "로그아웃",
+    "track": "주문 추적"
+  },
+  "auth": {
+    "login_title": "다시 오신 것을 환영합니다",
+    "signup_title": "계정 만들기",
+    "phone": "전화번호",
+    "email": "이메일",
+    "password": "비밀번호",
+    "otp": "인증 코드",
+    "send_otp": "코드 전송",
+    "verify": "인증",
+    "or": "또는",
+    "already_have_account": "이미 계정이 있으신가요?",
+    "no_account": "계정이 없으신가요?"
+  },
+  "request_status": {
+    "DRAFT": "초안",
+    "SUBMITTED": "제출됨",
+    "AWAITING_PAYMENT": "결제 대기",
+    "PAID": "결제 완료",
+    "IN_PROGRESS": "처리 중",
+    "CERTIFICATE_UPLOADED": "서류 준비 완료",
+    "READY_FOR_DELIVERY": "배송 준비",
+    "PICKED_UP": "수령됨",
+    "IN_TRANSIT": "배송 중",
+    "DELIVERED": "배송 완료",
+    "COMPLETED": "완료",
+    "CANCELLED": "취소됨",
+    "ON_HOLD": "보류",
+    "NEEDS_MORE_INFO": "추가 정보 필요",
+    "REFUNDED": "환불됨"
+  },
+  "services": {
+    "title": "우리의 서비스",
+    "select": "서비스 선택",
+    "fast": "빠른",
+    "normal": "일반",
+    "sla_days": "{days} 영업일",
+    "delivery_fee": "배송비",
+    "total": "합계",
+    "submit_request": "신청 제출",
+    "select_speed": "속도 선택",
+    "upload_documents": "서류 업로드",
+    "delivery_address": "배송 주소"
+  },
+  "tracking": {
+    "title": "신청 추적",
+    "request_number": "신청 #{number}",
+    "scan_qr": "QR 스캔으로 추적",
+    "whatsapp_us": "WhatsApp 문의",
+    "call_us": "전화하기",
+    "get_directions": "길찾기",
+    "download_certificate": "서류 다운로드"
+  },
+  "wallet": {
+    "balance": "잔액",
+    "topup": "충전",
+    "withdraw": "출금",
+    "history": "거래 내역",
+    "points": "포인트"
+  }
+}
