@@ -20,6 +20,6 @@
     "pnpm": ">=10.0.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@nestjs/core", "@prisma/client", "@prisma/engines", "prisma", "sharp"]
+    "onlyBuiltDependencies": ["@nestjs/core", "@prisma/client", "@prisma/engines", "bcrypt", "prisma", "sharp"]
   }
 }
