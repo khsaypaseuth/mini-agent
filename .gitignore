@@ -40,3 +40,5 @@ web-build/
 
 # pnpm
 .pnpm-store/
+apps/api/prisma/seed.js
+apps/api/prisma/seed.js.map
