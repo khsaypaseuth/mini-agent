@@ -17,6 +17,7 @@ import type { RecalcDeliveryDto } from './dto/recalc-delivery.dto';
 import { assertTransition } from './state-machine';
 
 const REQUEST_INCLUDE = {
+  customer: { select: { name: true, phone: true } },
   service: { select: { slug: true, name: true, outputType: true } },
   pricingOption: { select: { label: true, amount: true, currency: true, slaDays: true } },
   inputs: true,

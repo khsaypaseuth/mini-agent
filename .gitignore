@@ -42,3 +42,6 @@ web-build/
 .pnpm-store/
 apps/api/prisma/seed.js
 apps/api/prisma/seed.js.map
+
+# local file storage (dev without MinIO)
+apps/api/.local-storage/
