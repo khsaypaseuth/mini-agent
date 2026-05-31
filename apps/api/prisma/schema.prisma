@@ -376,13 +376,13 @@ model Certificate {
 model Label {
   id        String   @id @default(cuid())
   requestId String   @unique @map("request_id")
-  fileId    String   @map("file_id")
+  fileId    String?  @map("file_id")
   qrPayload String   @map("qr_payload")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   request Request @relation(fields: [requestId], references: [id])
-  file    File    @relation(fields: [fileId], references: [id])
+  file    File?   @relation(fields: [fileId], references: [id])
 
   @@map("labels")
 }
