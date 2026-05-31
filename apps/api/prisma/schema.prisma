@@ -492,3 +492,15 @@ model AuditLog {
 
   @@map("audit_logs")
 }
+
+// WhatsApp guided-intake conversation state, keyed by sender phone.
+model WhatsappSession {
+  id        String   @id @default(cuid())
+  phone     String   @unique
+  step      String   @default("START")
+  data      Json?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("whatsapp_sessions")
+}

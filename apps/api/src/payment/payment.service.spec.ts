@@ -2,6 +2,7 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { Decimal } from '@prisma/client/runtime/library';
 import { PaymentStatus, RequestStatus } from '@mini-agent/types';
+import { NotificationsService } from '../notifications/notifications.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { RequestsService } from '../requests/requests.service';
 import { PaymentService } from './payment.service';
@@ -58,7 +59,10 @@ describe('PaymentService', () => {
         raw,
       })),
     };
-    requests = { updateStatus: jest.fn().mockResolvedValue({}) };
+    requests = {
+      updateStatus: jest.fn().mockResolvedValue({ customerId: 'user-1', requestNumber: 'REQ-1' }),
+    };
+    const notifications = { notifyStatusChange: jest.fn().mockResolvedValue(undefined) };
 
     const module = await Test.createTestingModule({
       providers: [
@@ -66,6 +70,7 @@ describe('PaymentService', () => {
         { provide: PrismaService, useValue: prisma },
         { provide: PAYMENT_PROVIDER, useValue: provider },
         { provide: RequestsService, useValue: requests },
+        { provide: NotificationsService, useValue: notifications },
       ],
     }).compile();
 

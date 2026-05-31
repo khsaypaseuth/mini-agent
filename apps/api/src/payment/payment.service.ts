@@ -1,6 +1,7 @@
 import { BadRequestException, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PaymentStatus, RequestStatus } from '@mini-agent/types';
+import { NotificationsService } from '../notifications/notifications.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { RequestsService } from '../requests/requests.service';
 import { PAYMENT_PROVIDER, type PaymentProvider } from './payment-provider.interface';
@@ -15,6 +16,7 @@ export class PaymentService {
     private readonly prisma: PrismaService,
     @Inject(PAYMENT_PROVIDER) private readonly provider: PaymentProvider,
     private readonly requests: RequestsService,
+    private readonly notifications: NotificationsService,
   ) {}
 
   // ─── Public interface ──────────────────────────────────────────────────
@@ -98,7 +100,12 @@ export class PaymentService {
       },
     });
 
-    await this.requests.updateStatus(payment.requestId, RequestStatus.PAID, null);
+    const updated = await this.requests.updateStatus(payment.requestId, RequestStatus.PAID, null);
+    await this.notifications.notifyStatusChange(
+      updated.customerId,
+      updated.requestNumber,
+      RequestStatus.PAID,
+    );
 
     await this.prisma.auditLog.create({
       data: {

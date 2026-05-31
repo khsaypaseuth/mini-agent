@@ -16,6 +16,7 @@ import { QrModule } from './qr/qr.module';
 import { RequestsModule } from './requests/requests.module';
 import { ServicesModule } from './services/services.module';
 import { WalletModule } from './wallet/wallet.module';
+import { WhatsappModule } from './whatsapp/whatsapp.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { WalletModule } from './wallet/wallet.module';
     LabelsModule,
     DeliveriesModule,
     AdminModule,
+    WhatsappModule,
   ],
   controllers: [AppController],
   providers: [AppService],
