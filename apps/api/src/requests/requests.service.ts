@@ -1,11 +1,12 @@
-import {
-  ForbiddenException,
-  Injectable,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { randomBytes } from 'crypto';
-import { DeliveryType, RequestChannel, RequestStatus, UserRole, type RequestStatus as RS } from '@mini-agent/types';
+import {
+  DeliveryType,
+  RequestChannel,
+  RequestStatus,
+  UserRole,
+  type RequestStatus as RS,
+} from '@mini-agent/types';
 import type { User } from '@prisma/client';
 import { DeliveryService } from '../delivery/delivery.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -51,7 +52,10 @@ export class RequestsService {
     if (dto.pricingOptionId) {
       const po = await this.prisma.pricingOption.findUnique({ where: { id: dto.pricingOptionId } });
       if (po) {
-        const ctx: PricingContext = { passengerCount: dto.passengerCount, vehicleType: dto.vehicleType };
+        const ctx: PricingContext = {
+          passengerCount: dto.passengerCount,
+          vehicleType: dto.vehicleType,
+        };
         const priceResult = calculatePrice(po, ctx);
         totalAmount = priceResult.baseAmount + (deliveryFee ?? 0);
       }
@@ -113,7 +117,10 @@ export class RequestsService {
   }
 
   async findOne(id: string, user: User) {
-    const request = await this.prisma.request.findUnique({ where: { id }, include: REQUEST_INCLUDE });
+    const request = await this.prisma.request.findUnique({
+      where: { id },
+      include: REQUEST_INCLUDE,
+    });
     if (!request) throw new NotFoundException(`Request ${id} not found`);
     this.assertCanAccess(request, user);
     return request;
@@ -192,7 +199,7 @@ export class RequestsService {
     });
   }
 
-  async updateStatus(requestId: string, toStatus: RS, actorId: string, note?: string) {
+  async updateStatus(requestId: string, toStatus: RS, actorId: string | null, note?: string) {
     const request = await this.prisma.request.findUnique({ where: { id: requestId } });
     if (!request) throw new NotFoundException(`Request ${requestId} not found`);
 
