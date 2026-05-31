@@ -6,9 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { DeliveryModule } from './delivery/delivery.module';
 import { FilesModule } from './files/files.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { PaymentModule } from './payment/payment.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { RequestsModule } from './requests/requests.module';
 import { ServicesModule } from './services/services.module';
+import { WalletModule } from './wallet/wallet.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { ServicesModule } from './services/services.module';
     FilesModule,
     DeliveryModule,
     RequestsModule,
+    PaymentModule,
+    WalletModule,
   ],
   controllers: [AppController],
   providers: [AppService],
