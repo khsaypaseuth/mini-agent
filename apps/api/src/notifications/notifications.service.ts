@@ -1,23 +1,42 @@
-import { Injectable, Logger } from '@nestjs/common';
-import type { OtpChannel, RequestStatus } from '@mini-agent/types';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { OtpChannel, type RequestStatus } from '@mini-agent/types';
+import { PrismaService } from '../prisma/prisma.service';
+import { otpMessage, statusMessage } from './messages';
+import { WHATSAPP_PROVIDER, type WhatsAppProvider } from './whatsapp-provider.interface';
 
 @Injectable()
 export class NotificationsService {
   private readonly logger = new Logger(NotificationsService.name);
 
-  /** Phase 1: mock — logs to console. Phase 7: WhatsApp Cloud API. */
-  async sendOtp(channel: OtpChannel, contact: string, code: string): Promise<void> {
-    this.logger.log(`[OTP MOCK] channel=${channel} to=${contact} code=${code}`);
+  constructor(
+    private readonly prisma: PrismaService,
+    @Inject(WHATSAPP_PROVIDER) private readonly whatsapp: WhatsAppProvider,
+  ) {}
+
+  /** Send an OTP. WhatsApp channel goes through the provider; email is logged (Phase 9). */
+  async sendOtp(channel: OtpChannel, contact: string, code: string, locale = 'lo'): Promise<void> {
+    if (channel === OtpChannel.WHATSAPP) {
+      await this.whatsapp.sendText(contact, otpMessage(channel, code, locale));
+      return;
+    }
+    this.logger.log(`[OTP/email] to=${contact} code=${code}`);
   }
 
-  /** Phase 7: real WhatsApp/email notifications on status changes. */
+  /** Notify the customer on key status transitions via WhatsApp. */
   async notifyStatusChange(
     userId: string,
     requestNumber: string,
     status: RequestStatus,
   ): Promise<void> {
-    this.logger.log(
-      `[NOTIFY MOCK] userId=${userId} request=${requestNumber} status=${status}`,
-    );
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { phone: true, locale: true },
+    });
+    if (!user?.phone) return; // nothing to notify on (no phone on file)
+
+    const message = statusMessage(status, requestNumber, user.locale);
+    if (!message) return; // not a notify-worthy status
+
+    await this.whatsapp.sendText(user.phone, message);
   }
 }
