@@ -242,6 +242,12 @@ importers:
       '@mini-agent/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tanstack/react-query':
+        specifier: ^5.62.7
+        version: 5.100.14(react@18.3.1)
+      axios:
+        specifier: ^1.7.9
+        version: 1.16.1
       next:
         specifier: ^15.1.0
         version: 15.5.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
