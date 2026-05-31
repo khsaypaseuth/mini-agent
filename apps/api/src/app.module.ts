@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { CertificatesModule } from './certificates/certificates.module';
+import { DeliveriesModule } from './deliveries/deliveries.module';
 import { DeliveryModule } from './delivery/delivery.module';
 import { FilesModule } from './files/files.module';
 import { LabelsModule } from './labels/labels.module';
@@ -31,6 +32,7 @@ import { WalletModule } from './wallet/wallet.module';
     WalletModule,
     CertificatesModule,
     LabelsModule,
+    DeliveriesModule,
     AdminModule,
   ],
   controllers: [AppController],

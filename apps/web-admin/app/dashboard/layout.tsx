@@ -10,6 +10,16 @@ import { t } from '@/lib/i18n';
 const NAV = [
   { href: '/dashboard', labelKey: 'admin.queue', roles: null },
   {
+    href: '/dashboard/deliveries',
+    labelKey: 'admin.deliveries',
+    roles: [
+      UserRole.DELIVERY_MAN,
+      UserRole.MAIN_OFFICE_STAFF,
+      UserRole.MANAGER,
+      UserRole.SUPER_ADMIN,
+    ] as UserRole[],
+  },
+  {
     href: '/dashboard/staff',
     labelKey: 'admin.staff',
     roles: [UserRole.SUPER_ADMIN, UserRole.MANAGER] as UserRole[],

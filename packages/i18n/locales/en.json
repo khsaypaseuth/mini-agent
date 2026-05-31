@@ -122,6 +122,15 @@
     "view_on_map": "View on map",
     "no_value": "—",
     "login_failed": "Login failed — check your credentials",
-    "no_label_yet": "No label generated yet"
+    "no_label_yet": "No label generated yet",
+    "deliveries": "Deliveries",
+    "available_pickups": "Available for Pickup",
+    "my_deliveries": "My Active Deliveries",
+    "confirm_pickup": "Confirm Pickup",
+    "mark_in_transit": "Mark In Transit",
+    "deliver": "Deliver (upload proof)",
+    "delivering": "Delivering...",
+    "no_deliveries": "No deliveries right now",
+    "capture_location": "Capturing location..."
   }
 }
