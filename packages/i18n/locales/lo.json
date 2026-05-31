@@ -122,6 +122,15 @@
     "view_on_map": "ເບິ່ງແຜນທີ່",
     "no_value": "—",
     "login_failed": "ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ — ກວດສອບຂໍ້ມູນ",
-    "no_label_yet": "ຍັງບໍ່ໄດ້ສ້າງປ້າຍ"
+    "no_label_yet": "ຍັງບໍ່ໄດ້ສ້າງປ້າຍ",
+    "deliveries": "ການຈັດສົ່ງ",
+    "available_pickups": "ພ້ອມໃຫ້ຮັບ",
+    "my_deliveries": "ການຈັດສົ່ງຂອງຂ້ອຍ",
+    "confirm_pickup": "ຢືນຢັນການຮັບ",
+    "mark_in_transit": "ໝາຍວ່າກຳລັງສົ່ງ",
+    "deliver": "ສົ່ງ (ອັບໂຫຼດຫຼັກຖານ)",
+    "delivering": "ກຳລັງສົ່ງ...",
+    "no_deliveries": "ຍັງບໍ່ມີການຈັດສົ່ງ",
+    "capture_location": "ກຳລັງເກັບທີ່ຕັ້ງ..."
   }
 }

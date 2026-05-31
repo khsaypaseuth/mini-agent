@@ -122,6 +122,15 @@
     "view_on_map": "ดูบนแผนที่",
     "no_value": "—",
     "login_failed": "เข้าสู่ระบบไม่สำเร็จ — ตรวจสอบข้อมูล",
-    "no_label_yet": "ยังไม่ได้สร้างป้าย"
+    "no_label_yet": "ยังไม่ได้สร้างป้าย",
+    "deliveries": "การจัดส่ง",
+    "available_pickups": "พร้อมรับ",
+    "my_deliveries": "การจัดส่งของฉัน",
+    "confirm_pickup": "ยืนยันการรับ",
+    "mark_in_transit": "ทำเครื่องหมายกำลังจัดส่ง",
+    "deliver": "ส่ง (อัปโหลดหลักฐาน)",
+    "delivering": "กำลังส่ง...",
+    "no_deliveries": "ยังไม่มีการจัดส่ง",
+    "capture_location": "กำลังบันทึกตำแหน่ง..."
   }
 }
